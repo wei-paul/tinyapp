@@ -8,22 +8,26 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/urls">My URLs</a>
         <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
-        <form method="POST" action="/login">
-          <div class="input-group mb-3">
-            <input type="text" 
-            name="username"
-            class="form-control" placeholder="Input Username: " aria-label="Username: " aria-describedby="button-addon2">
-            <button class="btn btn-outline-primary" type="submit" id="button-addon2">login</button>
-          </div>
-        </form>
-        <form method="POST" action="/login">
-          <div class="input-group mb-3">
-            <input type="text" 
-            name="username"
-            class="form-control" placeholder="Input Username: " aria-label="Username: " aria-describedby="button-addon2">
-            <button class="btn btn-outline-primary" type="submit" id="button-addon2">login</button>
-          </div>
-        </form>
+        
+        <% if(username) { %>
+          <form method="POST" action="/logout">
+            <div style="position: absolute; top: 15px; right: 100px; width: 400px; text-align:right;">
+              logged in as: <%= username %>
+            </div>
+            <div style="position: absolute; top: 10px; right: 10px; width: 100px; text-align:right;"><button class="btn btn-outline-primary" type="submit" id="button-addon2">logout</button>
+            </div>
+          </form>
+        <% } else { %>     
+          <form method="POST" action="/login">
+            <div class="input-group mb-3" style="position: absolute; top: 15px; right: 10px; width: 250px; text-align:right;">
+              <input type="text" 
+              name="username"
+              class="form-control" placeholder="Input Username: " aria-label="Username: " aria-describedby="button-addon2">
+              <button class="btn btn-outline-primary" type="submit" id="button-addon2">login</button>
+            </div>
+          </form>
+        <% } %>
+
       </div>
     </div>
   </nav>

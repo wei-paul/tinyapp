@@ -4,6 +4,8 @@ const PORT = 3001; // default port 8080
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser")
 
+//Anytime I create a new (get page), I would need to implement that username variable as well
+//otherwise, code won't be able to find that page and you're going to get username not defined.
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -13,18 +15,20 @@ const urlDatabase = {
   "9sm5xK": "http://www.google.com"
 };
 app.get("/urls/new", (req, res) => {
-  res.render("urls_new");
+  const templateVars = { username: req.cookies.username };
+  res.render("urls_new", templateVars);
 })
 
 app.get("/urls", (req, res) => {
-  const templateVars = {
+  console.log(req.cookies["username"])
+    const templateVars = {
     username: req.cookies.username,
     urls: urlDatabase
   };
   res.render("urls_index", templateVars);
 })
 app.get("/urls/:shortURL", (req, res) => {
-  const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL] };
+  const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL], username: req.cookies.username };
   res.render("urls_show", templateVars);
 });
 
@@ -33,6 +37,10 @@ app.get("/u/:shortURL", (req, res) => {
   const longURL = urlDatabase[shortURL]
   res.redirect(longURL);
 });
+app.post("/logout", (req, res) => {
+  res.clearCookie("username")
+  res.redirect('/urls');
+})
 
 app.post("/login", (req, res) => {
   res.cookie("username", req.body.username)
