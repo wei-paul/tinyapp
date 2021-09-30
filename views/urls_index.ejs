@@ -21,16 +21,20 @@
         </tr>
       </thead>
       <tbody>
-        <% for(let url in urls) { %>
-          <tr>
-            <td><%= url %></td>
-            <td><%= urls[url].longURL %></td>
-            <td><form method="POST" action="/urls/<%= url %>/delete"><button type= "submit">Delete URL</button></form></td>
-            <td><form method="GET" action="/urls/<%= url %>"><button type= "submit">Edit URL</button></form></td>
+        <% if (user) { %>  
+          <% for(let url in urls) { %>
+            <tr>
+              <td><%= url %></td>
+              <td><%= urls[url].longURL %></td>
+              <td><form method="POST" action="/urls/<%= url %>/delete"><button type= "submit">Delete URL</button></form></td>
+              <td><form method="GET" action="/urls/<%= url %>"><button type= "submit">Edit URL</button></form></td>
             
-          </tr>
+            </tr>
+          <% } %>
+        <% } else { %>
+          <p>Please login to see your own URLs</p>
         <% } %>
-      </tbody>
+        </tbody>
     </table>
   </main>
   <!-- Bootstrap JS -->
