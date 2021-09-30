@@ -8,7 +8,6 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/urls">My URLs</a>
         <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
-        <a class="nav-item nav-link" href="/register">Register</a>
         
         <% if(user) { %>
           <form method="POST" action="/logout">
@@ -19,14 +18,8 @@
             </div>
           </form>
         <% } else { %>     
-          <form method="POST" action="/login">
-            <div class="input-group mb-3" style="position: absolute; top: 15px; right: 10px; width: 250px; text-align:right;">
-              <input type="text" 
-              name="username"
-              class="form-control" placeholder="Input Username: " aria-label="Username: " aria-describedby="button-addon2">
-              <button class="btn btn-outline-primary" type="submit" id="button-addon2">login</button>
-            </div>
-          </form>
+          <a class="nav-item nav-link" href="/register">Register</a>
+          <a class="nav-item nav-link" href="/login">Login</a>
         <% } %>
 
       </div>

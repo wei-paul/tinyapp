@@ -15,25 +15,25 @@
     <%- include('partials/_header') %>
 
     <main style="margin: 1em;">
-      <form class="form-inline" action="/register" method="POST">
+      <form class="form-inline" action="/login" method="POST">
         <div class="form-group mb-2">
           <form action="action_page.php">
             <div class="container">
-              <h1>Register</h1>
-                <p>Please fill in this form to create an account.</p>
+              <h1>Login</h1>
+                <p>Please login.</p>
               <hr>
           
-              <label for="email" style= "position: relative; bottom: 1px; right: 95px;"><b>Email</b></label>
+              <label for="email" style= "position: relative; bottom: 1px; right: 50px;"><b>Email</b></label>
               <input type="text" placeholder="Enter Email" name="email" style= "position: absolute; top: 180px;" id="email">
           
-              <label for="password"style= "position: relative; top: 25px; right: 95px"><b>Password</b></label>
+              <label for="password"style= "position: relative; top: 25px; right: 50px"><b>Password</b></label>
               <input type="password" placeholder="Enter Password" name="password" id="password">
           
               </div>
-                <button class="btn btn-outline-primary" type="submit" id="button-addon2" style= "position: relative; top: 5px; left: 15px" >Register</button>
+                <button class="btn btn-outline-primary" type="submit" id="button-addon2" style= "position: relative; top: 5px; left: 15px" >Sign In</button>
                 <br></br>
-              <div class="container signin">
-               <p>Already have an account? <a href="/login">Sign in</a>.</p>
+              <div class="container register">
+               <p>Don't have an account? <a href="/register">Register here</a>!</p>
             </div>
           </form>
       </form>
