@@ -44,6 +44,10 @@ function generateRandomString() {
 
 app.get("/urls/new", (req, res) => {
   const templateVars = { user: users[req.cookies.user_id] };
+  console.log(req.cookies.user_id)
+  if (!req.cookies.user_id) {
+    res.redirect('/login');
+  }
   res.render("urls_new", templateVars);
 })
 
@@ -56,6 +60,9 @@ app.get("/urls", (req, res) => {
 })
 app.get("/urls/:shortURL", (req, res) => {
   const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL], user: users[req.cookies.user_id] };
+  if (!req.cookies.user_id) {
+    return res.status(400).send("Please login before making changes");
+  }
   res.render("urls_show", templateVars);
 });
 
@@ -144,6 +151,9 @@ app.post("/urls", (req, res) => {
 
 app.post("/urls/:shortURL/delete", (req, res) => {
   const shortURL = req.params.shortURL;
+  if (!req.cookies.user_id) {
+    return res.status(400).send("Please login before making changes");
+  }
   delete urlDatabase[shortURL];
   res.redirect('/urls')
 })
@@ -159,14 +169,9 @@ app.get("/urls/:shortURL", (req, res) => {
   res.redirect(longURL);
 })
 
-app.get("/", (req, res) => {
-  res.send("Hello!");
-});
+
 app.get("/urls.json", (req, res) => {
   res.json(urlDatabase);
-});
-app.get("/hello", (req, res) => {
-  res.send("<html><body>Hello <b>World</b></body></html>\n");
 });
 
 app.listen(PORT, () => {
