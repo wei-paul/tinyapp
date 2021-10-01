@@ -109,7 +109,6 @@ app.post('/login', (req, res) => {
     return res.status(403).send('Email not registered.');
   }
   const hashedPassword = user.password;
-  console.log('hashed password is', hashedPassword);
   // we want make sure that email and password are filled
   if (!email || !password) {
     return res.status(400).send('Email or Password cannot be blank!');
@@ -153,7 +152,6 @@ app.post('/register', (req, res) => {
         email: email,
         password: hash
       };
-      console.log(users);
       res.redirect('/login');
     });
 
@@ -161,7 +159,6 @@ app.post('/register', (req, res) => {
 
 //POST 'URLS' PAGE
 app.post('/urls', (req, res) => {
-  console.log(req.body);
   let shortURL = generateRandomString();
   let longURL = req.body.longURL;
   urlDatabase[shortURL] = { longURL: longURL , userID: req.session.user_id };
