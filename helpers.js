@@ -1,4 +1,4 @@
-const { urlDatabase } = require('./database')
+const { urlDatabase } = require('./database');
 
 //get Urls for userId
 const getUrlsForUser = function(id) {
@@ -34,4 +34,4 @@ module.exports = {
   getUrlsForUser,
   findUserByEmail,
   generateRandomString
-}
+};
