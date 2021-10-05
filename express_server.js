@@ -58,7 +58,11 @@ app.get('/urls/:shortURL', (req, res) => {
   if (!req.session.user_id) {
     return res.status(400).send('Please login before making changes');
   }
-  res.render('urls_show', templateVars);
+  if (req.session.user_id === urlDatabase[req.params.shortURL].userID) {
+    res.render('urls_show', templateVars);
+  } else {
+    return res.status(400).send('Invalid user ID for this URL.')
+  }
 });
 
 //GET 'REDIRECT TO ORIGINAL URL PAGE (i.e. google.com, youtube.com, etc.)
